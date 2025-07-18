@@ -20,9 +20,7 @@ void setupGetit() {
   getIt.registerSingleton<LoginCubit>(LoginCubit(getIt()));
 
   // getIt.registerSingleton<ProductsRepo>(
-  //   ProductsRepoImpl(
-  //     getIt<DatabaseService>(),
-  //   ),
+  //   ProductsRepoImpl(getIt<DatabaseService>()),
   // );
 
   // getIt.registerSingleton<OrdersRepo>(

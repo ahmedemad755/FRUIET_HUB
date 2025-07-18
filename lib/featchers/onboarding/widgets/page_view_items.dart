@@ -1,4 +1,6 @@
+import 'package:e_commerce/constants.dart';
 import 'package:e_commerce/core/functions_helper/routs.dart';
+import 'package:e_commerce/core/services/shared_prefs_singelton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -49,7 +51,7 @@ class PageViewItems extends StatelessWidget {
                       ), // نزل شويه
                       child: GestureDetector(
                         onTap: () {
-                          // Prefs.setBool(kIsOnBoardingViewSeen, true);
+                          Prefs.setBool(kIsOnBoardingViewSeen, true);
                           Navigator.of(
                             context,
                           ).pushReplacementNamed(AppRoutes.login);

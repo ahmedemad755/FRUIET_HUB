@@ -1,5 +1,7 @@
 import 'package:e_commerce/core/errors/exceptions.dart';
+import 'package:e_commerce/core/services/shared_prefs_singelton.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'dart:developer' as developer;
 
 import 'package:google_sign_in/google_sign_in.dart';
@@ -97,21 +99,24 @@ class FirebaseAuthService {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
-  // Future<User> signInWithApple() async {
-  //   // Implement Apple Sign-In logic here
-  //   // This is a placeholder for the actual implementation
-  //   throw UnimplementedError('Apple Sign-In not implemented yet');
-  // }
+  Future<UserCredential> signInWithFacebook() async {
+    // Trigger the sign-in flow
+    final LoginResult loginResult = await FacebookAuth.instance.login();
 
-  // Future<UserCredential> signInWithFacebook() async {
-  //   // Trigger the sign-in flow
-  //   final LoginResult loginResult = await FacebookAuth.instance.login();
+    // Create a credential from the access token
+    final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
 
-  //   // Create a credential from the access token
-  //   final OAuthCredential facebookAuthCredential =
-  //       FacebookAuthProvider.credential(loginResult.accessToken!.token);
+    // Once signed in, return the UserCredential
+    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+  }
 
-  //   // Once signed in, return the UserCredential
-  //   return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-  // }
+  bool isLoggedIn() {
+    return FirebaseAuth.instance.currentUser != null;
+  }
+
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
+    await Prefs.setBool("isLoggedIn", false);
+  }
 }

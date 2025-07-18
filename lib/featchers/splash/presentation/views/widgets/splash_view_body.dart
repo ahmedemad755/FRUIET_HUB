@@ -1,6 +1,9 @@
+import 'package:e_commerce/constants.dart';
+import 'package:e_commerce/core/functions_helper/routs.dart';
+import 'package:e_commerce/core/services/shared_prefs_singelton.dart';
 import 'package:e_commerce/core/utils/app_imags.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -12,8 +15,8 @@ class SplashViewBody extends StatefulWidget {
 class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   void initState() {
-    excuteNaviagtion();
     super.initState();
+    executeNavigation();
   }
 
   @override
@@ -32,20 +35,18 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     );
   }
 
-  void excuteNaviagtion() {
-    // bool isOnBoardingViewSeen = Prefs.getBool(kIsOnBoardingViewSeen);
-    Future.delayed(const Duration(seconds: 3), () {
-      // if (isOnBoardingViewSeen) {
-      //   // var isLoggedIn = FirebaseAuthService().isLoggedIn();
+  void executeNavigation() {
+    final bool isOnBoardingViewSeen = Prefs.getBool(kIsOnBoardingViewSeen);
+    final bool isLoggedIn = Prefs.getBool("isLoggedIn");
 
-      //   if (isLoggedIn) {
-      //     Navigator.pushReplacementNamed(context, MainView.routeName);
-      //   } else {
-      //     Navigator.pushReplacementNamed(context, SigninView.routeName);
-      //   }
-      // } else {
-      //   Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
-      // }
+    Future.delayed(const Duration(seconds: 3), () {
+      if (!isOnBoardingViewSeen) {
+        Navigator.pushReplacementNamed(context, AppRoutes.onboarding);
+      } else if (isLoggedIn) {
+        Navigator.pushReplacementNamed(context, AppRoutes.home);
+      } else {
+        Navigator.pushReplacementNamed(context, AppRoutes.login);
+      }
     });
   }
 }

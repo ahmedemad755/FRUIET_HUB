@@ -18,9 +18,9 @@ abstract class AuthRepo {
   //  Google Sign-In method
   Future<Either<Faliur, UserEntity>> signInWithGoogle();
 
+  // Facebook Sign-In method
+  Future<Either<Faliur, UserEntity>> signInWithFacebook();
+
   // // Apple Sign-In method
   // Future<Either<Faliur, UserEntity>> signInWithApple();
-
-  // // Facebook Sign-In method
-  // Future<Either<Faliur, UserEntity>> signInWithFacebook();
 }

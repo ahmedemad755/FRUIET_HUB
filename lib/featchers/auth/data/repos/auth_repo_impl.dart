@@ -7,7 +7,6 @@ import 'package:e_commerce/core/services/firebase_auth_service.dart';
 import 'package:e_commerce/featchers/auth/data/models/user_model.dart';
 import 'package:e_commerce/featchers/auth/data/repos/auth_repo.dart';
 import 'package:e_commerce/featchers/auth/domain/entites/user_entity.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuthService firebaseAuthService;
@@ -62,7 +61,7 @@ class AuthRepoImpl extends AuthRepo {
       final user = userCredential.user;
 
       if (user == null) {
-        return Left(ServerFaliur('فشل تسجيل الدخول بحساب Google.'));
+        return Left(ServerFaliur(' .فشل تسجيل الدخول بحساب Google.'));
       }
 
       return Right(UserModel.fromfirebaseUser(user));
@@ -72,39 +71,31 @@ class AuthRepoImpl extends AuthRepo {
       developer.log(
         'Exception in AuthRepoImpl.signInWithGoogle: ${e.toString()}',
       );
-      return Left(ServerFaliur('حدث خطأ ما. الرجاء المحاولة مرة أخرى.'));
+      return Left(
+        ServerFaliur('حدث خطأ ما. الرجاء المحاولة مرة أخرى.${e.toString()}'),
+      );
     }
   }
 
-  // @override
-  // Future<Either<Faliur, UserEntity>> signInWithGoogle() async {
-  //   try {
-  //     // 1. Sign in with Google
-  //     final user = await firebaseAuthService.signInWithGoogle();
+  @override
+  Future<Either<Faliur, UserEntity>> signInWithFacebook() async {
+    try {
+      final userCredential = await firebaseAuthService.signInWithFacebook();
+      final user = userCredential.user;
 
-  //     // 2. Convert Firebase User to UserModel/UserEntity
-  //     return Right(UserModel.fromfirebaseUser(user));
-  //   } on CustomException catch (e) {
-  //     return Left(ServerFaliur(e.message));
-  //   } catch (e) {
-  //     developer.log(
-  //       'Exception in AuthRepoImpl.signInWithGoogle: ${e.toString()}',
-  //     );
-  //     return Left(ServerFaliur('حدث خطأ أثناء تسجيل الدخول باستخدام جوجل'));
-  //   }
-  // }
-
-  // @override
-  // Future<Either<Faliur, UserEntity>> signInWithApple() {
-  //   throw UnimplementedError();
-  // }
-
-  // @override
-  // Future<Either<Faliur, UserEntity>> signInWithFacebook() {
-  //   // TODO: implement signInWithFacebook
-  //   throw UnimplementedError();
-  // }
-
+      if (user == null) {
+        return Left(ServerFaliur('Failed to sign in with Facebook'));
+      }
+      return Right(UserModel.fromfirebaseUser(user));
+    } on CustomException catch (e) {
+      return Left(ServerFaliur(e.message));
+    } catch (e) {
+      developer.log(
+        'Exception in AuthRepoImpl.signInWithFacebook: ${e.toString()}',
+      );
+      return Left(ServerFaliur('حدث خطاء ما. الرجاء المحاولة مرة اخرى.'));
+    }
+  }
   // @override
   // Future<Either<Faliur, UserEntity>> signInWithFacebook() async {
   //   try {

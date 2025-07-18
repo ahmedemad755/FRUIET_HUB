@@ -150,25 +150,27 @@ class _LoginViewState extends State<LoginView> {
                           text: 'تسجيل بواسطة جوجل',
                         ),
                         const SizedBox(height: 12),
-                        SocialButton(
-                          icon: SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: SvgPicture.asset(Assets.vectorApple),
-                          ),
-                          text: 'تسجيل بواسطة أبل',
-                          onPressed: () {},
-                        ),
-                        const SizedBox(height: 12),
-                        SocialButton(
-                          icon: SvgPicture.asset(
-                            Assets.facebook,
-                            width: 40,
-                            height: 20,
-                          ),
-                          text: 'تسجيل بواسطة فيسبوك',
-                          onPressed: () {},
-                        ),
+                        // SocialButton(
+                        //   icon: SizedBox(
+                        //     width: 24,
+                        //     height: 24,
+                        //     child: SvgPicture.asset(Assets.vectorApple),
+                        //   ),
+                        //   text: 'تسجيل بواسطة أبل',
+                        //   onPressed: () {},
+                        // ),
+                        // const SizedBox(height: 12),
+                        // SocialButton(
+                        //   icon: SvgPicture.asset(
+                        //     Assets.facebook,
+                        //     width: 40,
+                        //     height: 20,
+                        //   ),
+                        //   text: 'تسجيل بواسطة فيسبوك',
+                        //   onPressed: () {
+                        //     context.read<LoginCubit>().signInWithFacebook();
+                        //   },
+                        // ),
                       ],
                     ),
                   ),

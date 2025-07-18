@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_commerce/constants.dart';
 
 import 'package:e_commerce/core/functions_helper/routs.dart';
+import 'package:e_commerce/core/services/shared_prefs_singelton.dart';
 
 import 'package:e_commerce/core/utils/app_colors.dart';
 import 'package:e_commerce/core/widgets/custom_button.dart';
@@ -66,7 +67,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
             // Show button only on the first page
             child: CustomButton(
               onPressed: () async {
-                // await Prefs.setBool(kIsOnBoardingViewSeen, true);
+                await Prefs.setBool(kIsOnBoardingViewSeen, true);
                 Navigator.of(context).pushReplacementNamed(AppRoutes.login);
               },
               text: 'ابدأ الان',
