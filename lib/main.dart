@@ -23,7 +23,7 @@ void main() async {
 
   // تحديد البداية بناءً على الحالة
   final isOnBoardingSeen = Prefs.getBool(kIsOnBoardingViewSeen);
-  var isLoggedIn = FirebaseAuthService().isLoggedIn();
+  var isLoggedIn = getIt<FirebaseAuthService>().isLoggedIn();
 
   String initialRoute;
   if (!isOnBoardingSeen) {
@@ -37,9 +37,7 @@ void main() async {
 }
 
 class FuitHub extends StatelessWidget {
-  // final String initialRoute;
   final String initialRoute;
-
   const FuitHub({super.key, required this.initialRoute});
 
   @override

@@ -4,12 +4,10 @@ import 'package:e_commerce/core/functions_helper/build_error_bar.dart';
 import 'package:e_commerce/core/widgets/custom_button.dart';
 import 'package:e_commerce/featchers/auth/presentation/cubits/login/login_cubit.dart';
 import 'package:e_commerce/featchers/auth/presentation/cubits/login/login_state.dart';
-import 'package:e_commerce/featchers/auth/presentation/cubits/sugnup/sugnup_cubit.dart';
 import 'package:e_commerce/featchers/auth/widgets/build_app_bar.dart';
 import 'package:e_commerce/featchers/auth/widgets/cusstom_textfield.dart';
 import 'package:e_commerce/featchers/auth/widgets/customProgressLoading.dart';
 import 'package:e_commerce/featchers/auth/widgets/password_field.dart';
-
 import 'package:e_commerce/featchers/auth/widgets/socialbutton.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +32,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: 'تسجيل دخول'),
+      appBar: buildAppBar(context, title: 'تسجيل دخول', showBackButton: false),
       body: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
@@ -46,7 +44,7 @@ class _LoginViewState extends State<LoginView> {
         },
         builder: (context, state) {
           return CustomProgresIndecatorHUD(
-            isLoading: state is SugnupLoading ? true : false,
+            isLoading: state is LoginLoading ? true : false,
             child: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -75,15 +73,29 @@ class _LoginViewState extends State<LoginView> {
                         const SizedBox(height: 8),
                         Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(
-                            'نسيت كلمة المرور؟',
-                            style: TextStyle(
-                              color: AppColors.lightPrimaryColor,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.of(
+                                context,
+                              ).pushNamed(AppRoutes.forgotPassword);
+                            },
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets
+                                  .zero, // يخلي الزر بشكل نص فقط بدون مساحة إضافية
+                              minimumSize: Size(0, 0),
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            ),
+                            child: Text(
+                              'نسيت كلمة .المرور؟',
+                              style: TextStyle(
+                                color: AppColors.lightPrimaryColor,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                         ),
+
                         const SizedBox(height: 24),
                         CustomButton(
                           text: 'تسجيل دخول',

@@ -1,9 +1,14 @@
 import 'package:e_commerce/core/di/injection.dart';
 import 'package:e_commerce/featchers/auth/data/repos/auth_repo.dart';
+import 'package:e_commerce/featchers/auth/data/repos/auth_repo_impl.dart';
 import 'package:e_commerce/featchers/auth/presentation/cubits/login/login_cubit.dart';
-import 'package:e_commerce/featchers/auth/presentation/cubits/sugnup/sugnup_cubit.dart';
-import 'package:e_commerce/featchers/auth/view/login_view.dart';
-import 'package:e_commerce/featchers/auth/view/signup.dart';
+import 'package:e_commerce/featchers/auth/presentation/cubits/signup/sugnup_cubit.dart';
+import 'package:e_commerce/featchers/auth/presentation/cubits/vereficationotp/vereficationotp_cubit.dart';
+import 'package:e_commerce/featchers/auth/presentation/view/forgot_password_view.dart';
+import 'package:e_commerce/featchers/auth/presentation/view/login_view.dart';
+import 'package:e_commerce/featchers/auth/presentation/view/oTPVerificationScreen.dart';
+import 'package:e_commerce/featchers/auth/presentation/view/reset_Password.dart';
+import 'package:e_commerce/featchers/auth/presentation/view/signup.view.dart';
 import 'package:e_commerce/featchers/home/home.dart';
 import 'package:e_commerce/featchers/onboarding/views/onboarding_view.dart';
 import 'package:e_commerce/featchers/splash/presentation/views/splash_view.dart';
@@ -16,6 +21,9 @@ class AppRoutes {
   static const String login = 'login';
   static const String signup = 'signup';
   static const String home = 'home';
+  static const String forgotPassword = 'forgotPassword';
+  static const String otp = 'otp';
+  static const String sendResetPassword = 'sendResetPassword';
 }
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -34,7 +42,30 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         },
       );
     case AppRoutes.home:
-      return MaterialPageRoute(builder: (_) => const HomePage());
+      return MaterialPageRoute(
+        builder: (_) => HomePage(authRepoImpl: getIt<AuthRepoImpl>()),
+      );
+    case AppRoutes.forgotPassword:
+      return MaterialPageRoute(
+        builder: (_) => BlocProvider(
+          create: (context) => getIt<OTPCubit>(),
+          child: ForgotPasswordScreen(),
+        ),
+      );
+
+    case AppRoutes.otp:
+      final args = settings.arguments as Map<String, dynamic>;
+      final otpCubit = args['cubit'] as OTPCubit;
+      final phoneNumber = args['phone'] as String?;
+      return MaterialPageRoute(
+        builder: (_) => BlocProvider.value(
+          value: otpCubit,
+          child: OTPVerificationScreen(phoneNumber: phoneNumber),
+        ),
+      );
+
+    case AppRoutes.sendResetPassword:
+      return MaterialPageRoute(builder: (_) => const SendResetPassword());
 
     case AppRoutes.signup:
       return MaterialPageRoute(

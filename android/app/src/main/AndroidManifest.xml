@@ -1,4 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- للصور من Android 13 وفوق -->
+<uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+<!-- للصور من Android 12 وتحت -->
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+<!-- للكتابة على الذاكرة حتى Android 9 -->
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28"/>
     <application
         android:label="fruiet_hub"
         android:name="${applicationName}"
