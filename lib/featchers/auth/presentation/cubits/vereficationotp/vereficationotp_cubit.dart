@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:e_commerce/featchers/auth/data/repos/auth_repo.dart';
-import 'package:e_commerce/featchers/auth/presentation/cubits/vereficationotp/vereficationotp_state.dart';
+import 'package:e_commerce/featchers/AUTH/data/repos/auth_repo.dart';
+import 'package:e_commerce/featchers/AUTH/presentation/cubits/vereficationotp/vereficationotp_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class OTPCubit extends Cubit<OTPState> {

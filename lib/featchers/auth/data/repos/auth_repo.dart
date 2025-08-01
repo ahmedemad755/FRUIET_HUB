@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart'; // Add this import// Corrected typo
 import 'package:e_commerce/core/errors/faliur.dart';
-import 'package:e_commerce/featchers/auth/domain/entites/user_entity.dart';
+import 'package:e_commerce/featchers/AUTH/domain/entites/user_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthRepo {

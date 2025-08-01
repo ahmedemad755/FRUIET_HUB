@@ -1,8 +1,8 @@
 import 'package:e_commerce/core/functions_helper/routs.dart';
 import 'package:e_commerce/core/utils/app_colors.dart';
-import 'package:e_commerce/featchers/auth/presentation/cubits/vereficationotp/vereficationotp_cubit.dart';
-import 'package:e_commerce/featchers/auth/presentation/cubits/vereficationotp/vereficationotp_state.dart';
-import 'package:e_commerce/featchers/auth/widgets/cusstom_textfield.dart';
+import 'package:e_commerce/featchers/AUTH/presentation/cubits/vereficationotp/vereficationotp_cubit.dart';
+import 'package:e_commerce/featchers/AUTH/presentation/cubits/vereficationotp/vereficationotp_state.dart';
+import 'package:e_commerce/featchers/AUTH/widgets/cusstom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

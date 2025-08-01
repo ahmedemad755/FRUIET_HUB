@@ -1,4 +1,4 @@
-import 'package:e_commerce/featchers/auth/domain/entites/user_entity.dart';
+import 'package:e_commerce/featchers/AUTH/domain/entites/user_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class UserModel extends UserEntity {

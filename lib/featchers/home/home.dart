@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce/core/functions_helper/build_error_bar.dart';
-import 'package:e_commerce/featchers/auth/data/repos/auth_repo_impl.dart';
+import 'package:e_commerce/featchers/AUTH/data/repos/auth_repo_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

@@ -1,6 +1,6 @@
 import 'package:e_commerce/core/services/shared_prefs_singelton.dart';
-import 'package:e_commerce/featchers/auth/data/repos/auth_repo.dart';
-import 'package:e_commerce/featchers/auth/presentation/cubits/login/login_state.dart';
+import 'package:e_commerce/featchers/AUTH/data/repos/auth_repo.dart';
+import 'package:e_commerce/featchers/AUTH/presentation/cubits/login/login_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginCubit extends Cubit<LoginState> {

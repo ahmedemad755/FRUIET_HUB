@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce/core/services/shared_prefs_singelton.dart';
-import 'package:e_commerce/featchers/auth/data/repos/auth_repo.dart';
-import 'package:e_commerce/featchers/auth/domain/entites/user_entity.dart';
+import 'package:e_commerce/featchers/AUTH/data/repos/auth_repo.dart';
+import 'package:e_commerce/featchers/AUTH/domain/entites/user_entity.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
