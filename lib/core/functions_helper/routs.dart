@@ -9,7 +9,7 @@ import 'package:e_commerce/featchers/AUTH/presentation/view/login_view.dart';
 import 'package:e_commerce/featchers/AUTH/presentation/view/oTPVerificationScreen.dart';
 import 'package:e_commerce/featchers/AUTH/presentation/view/reset_Password.dart';
 import 'package:e_commerce/featchers/AUTH/presentation/view/signup.view.dart';
-import 'package:e_commerce/featchers/home/home.dart';
+import 'package:e_commerce/featchers/home/presentation/views/home_veiw.dart';
 import 'package:e_commerce/featchers/onboarding/views/onboarding_view.dart';
 import 'package:e_commerce/featchers/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
