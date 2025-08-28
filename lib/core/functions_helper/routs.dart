@@ -9,6 +9,7 @@ import 'package:e_commerce/featchers/AUTH/presentation/view/login_view.dart';
 import 'package:e_commerce/featchers/AUTH/presentation/view/oTPVerificationScreen.dart';
 import 'package:e_commerce/featchers/AUTH/presentation/view/reset_Password.dart';
 import 'package:e_commerce/featchers/AUTH/presentation/view/signup.view.dart';
+import 'package:e_commerce/featchers/best_selling_fruites/presentations/views/best_seliling_fruites_view.dart';
 import 'package:e_commerce/featchers/home/presentation/views/home_veiw.dart';
 import 'package:e_commerce/featchers/onboarding/views/onboarding_view.dart';
 import 'package:e_commerce/featchers/splash/presentation/views/splash_view.dart';
@@ -24,6 +25,7 @@ class AppRoutes {
   static const String forgotPassword = 'forgotPassword';
   static const String otp = 'otp';
   static const String sendResetPassword = 'sendResetPassword';
+  static const String bestFruites = 'bestFruites';
 }
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -32,6 +34,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => const SplashView());
     case AppRoutes.onboarding:
       return MaterialPageRoute(builder: (_) => const OnboardingView());
+    case AppRoutes.bestFruites:
+      return MaterialPageRoute(builder: (_) => const BestSelilingFruitesView());
     case AppRoutes.login:
       return MaterialPageRoute(
         builder: (_) {

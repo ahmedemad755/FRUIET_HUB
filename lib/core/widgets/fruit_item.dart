@@ -28,39 +28,50 @@ class FruitItem extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 20),
-                Image.asset(Assets.whatermwlonTest),
+                Flexible(child: Image.asset(Assets.whatermwlonTest)),
                 SizedBox(height: 24),
-                ListTile(
-                  title: Text(
-                    'بطيخ',
-                    style: TextStyles.bold16,
-                    textAlign: TextAlign.right,
-                  ),
-                  subtitle: Text.rich(
-                    TextSpan(
-                      children: [
+                Column(
+                  children: [
+                    ListTile(
+                      contentPadding: EdgeInsets.only(
+                        left: 6,
+                        right: 6,
+                        top: 16,
+                      ),
+                      title: Text(
+                        'بطيخ',
+                        style: TextStyles.bold16,
+                        textAlign: TextAlign.right,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      subtitle: Text.rich(
                         TextSpan(
-                          text: '20جنية',
-                          style: TextStyles.bold16.copyWith(
-                            color: AppColors.secondaryColor,
-                          ),
+                          children: [
+                            TextSpan(
+                              text: '20جنية',
+                              style: TextStyles.bold16.copyWith(
+                                color: AppColors.secondaryColor,
+                              ),
+                            ),
+                            TextSpan(
+                              text: ' / كيلو',
+                              style: TextStyles.regular16.copyWith(
+                                color: AppColors.lightSecondaryColor,
+                              ),
+                            ),
+                          ],
                         ),
-                        TextSpan(
-                          text: ' / كيلو',
-                          style: TextStyles.regular16.copyWith(
-                            color: AppColors.lightSecondaryColor,
-                          ),
+                      ),
+                      trailing: GestureDetector(
+                        onTap: () {},
+                        child: const CircleAvatar(
+                          backgroundColor: AppColors.primaryColor,
+                          child: Icon(Icons.add, color: Colors.white),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                  trailing: GestureDetector(
-                    onTap: () {},
-                    child: const CircleAvatar(
-                      backgroundColor: AppColors.primaryColor,
-                      child: Icon(Icons.add, color: Colors.white),
-                    ),
-                  ),
+                  ],
                 ),
               ],
             ),

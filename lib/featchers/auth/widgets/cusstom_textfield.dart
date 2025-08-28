@@ -6,14 +6,14 @@ import 'package:e_commerce/core/utils/app_text_styles.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
-    Key? key,
+    super.key,
     required this.hintText,
     required this.textInputType,
     this.suffixIcon,
     this.controller,
     this.onSaved,
     this.obscureText = false,
-  }) : super(key: key);
+  });
   final String hintText;
   final TextInputType textInputType;
   final TextEditingController? controller;

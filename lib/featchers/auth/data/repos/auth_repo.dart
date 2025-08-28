@@ -28,7 +28,9 @@ abstract class AuthRepo {
     required String email,
   });
 
-  Future<UserEntity> getUserData({required String Uid});
+  Future saveUserData({required UserEntity user});
+
+  Future<UserEntity> getUserData({required String uid});
 
   // // Apple Sign-In method
   // Future<Either<Faliur, UserEntity>> signInWithApple();

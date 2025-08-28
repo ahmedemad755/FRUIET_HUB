@@ -11,28 +11,22 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                CustomHomeAppBar(),
-                SizedBox(height: kTopPaddding),
-                SearchTextFeild(),
-                SizedBox(height: 12),
-                FeaturedList(),
-                SizedBox(height: 12),
-                BestSellingHeader(),
-                SizedBox(height: 12),
-
-                // Add other widgets here, like categories, products, etc.
-              ],
-            ),
-          ),
-          Bestsellinggridveiw(),
-        ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            CustomHomeAppBar(),
+            SizedBox(height: kTopPaddding),
+            SearchTextFeild(),
+            SizedBox(height: 12),
+            FeaturedList(),
+            SizedBox(height: 12),
+            BestSellingHeader(),
+            SizedBox(height: 12),
+            Bestsellinggridveiw(itemcount: 4), // هنا GridView هيتعامل كـ Box
+          ],
+        ),
       ),
     );
   }

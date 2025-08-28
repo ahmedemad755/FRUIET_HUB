@@ -1,14 +1,15 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   /// Assets for appIcon
   /// assets/app_icon.png
   static const String appIcon = "assets/app_icon.png";
 
   /// Assets for background2Onboarding
   /// assets/background2_onboarding.svg
-  static const String background2Onboarding = "assets/background2_onboarding.svg";
+  static const String background2Onboarding =
+      "assets/background2_onboarding.svg";
 
   /// Assets for backgroundOnboarding
   /// assets/background_onboarding.svg
@@ -88,7 +89,8 @@ class Assets {
 
   /// Assets for socialIconsGoogleSvg
   /// assets/SocialIcons_google.svg.vec
-  static const String socialIconsGoogleSvg = "assets/SocialIcons_google.svg.vec";
+  static const String socialIconsGoogleSvg =
+      "assets/SocialIcons_google.svg.vec";
 
   /// Assets for user
   /// assets/user.svg
@@ -101,5 +103,21 @@ class Assets {
   /// Assets for whatermwlonTest
   /// assets/whatermwlon_test.png
   static const String whatermwlonTest = "assets/whatermwlon_test.png";
-}
 
+  /// Assets for active
+  /// assets/active/
+  static const String activeElements = "assets/active/element-3.svg";
+  static const String activeHome = "assets/active/home.svg";
+  static const String activeProduct = "assets/active/product.svg";
+  static const String activeShoppingCart = "assets/active/shopping-cart.svg";
+  static const String activeUser = "assets/active/user.svg";
+
+  /// Assets for inActive
+  /// assets/inActive/
+  static const String inActiveElements = "assets/inActive/element-3.svg";
+  static const String inActiveHome = "assets/inActive/home.svg";
+  static const String inActiveProduct = "assets/inActive/product.svg";
+  static const String inActiveShoppingCart =
+      "assets/inActive/shopping-cart.svg";
+  static const String inActiveUser = "assets/inActive/user.svg";
+}

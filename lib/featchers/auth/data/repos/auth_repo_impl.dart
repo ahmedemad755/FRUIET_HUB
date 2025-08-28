@@ -1,10 +1,13 @@
+import 'dart:convert';
 import 'dart:developer' as developer;
 import 'package:dartz/dartz.dart';
+import 'package:e_commerce/constants.dart';
 import 'package:e_commerce/core/errors/exceptions.dart';
 import 'package:e_commerce/core/errors/faliur.dart';
 import 'package:e_commerce/core/services/cloud_fire_store_service.dart';
 import 'package:e_commerce/core/services/database_service.dart';
 import 'package:e_commerce/core/services/firebase_auth_service.dart';
+import 'package:e_commerce/core/services/shared_prefs_singelton.dart';
 import 'package:e_commerce/core/utils/backend_points.dart';
 import 'package:e_commerce/featchers/AUTH/data/models/user_model.dart';
 import 'package:e_commerce/featchers/AUTH/data/repos/auth_repo.dart';
@@ -13,7 +16,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuthService firebaseAuthService;
-  final Databaseservice databaseservice;
+  final DatabaseService databaseservice;
   final FireStoreService fireStoreService;
 
   AuthRepoImpl({
@@ -74,19 +77,20 @@ class AuthRepoImpl extends AuthRepo {
     required String password,
   }) async {
     try {
-      final user = await firebaseAuthService.signInWithEmailAndPassword(
+      var user = await firebaseAuthService.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      var userentity = await getUserData(Uid: user.uid);
-      return Right(userentity); // التحويل إلى UserEntity
+      var userEntity = await getUserData(uid: user.uid);
+      await saveUserData(user: userEntity);
+      return Right(userEntity);
     } on CustomException catch (e) {
-      return Left(ServerFaliur(e.message));
+      return left(ServerFaliur(e.message));
     } catch (e) {
       developer.log(
         'Exception in AuthRepoImpl.createUserWithEmailAndPassword: ${e.toString()}',
       );
-      return Left(ServerFaliur('حدث خطأ ما. الرجاء المحاولة مرة اخرى.'));
+      return left(ServerFaliur('حدث خطأ ما. الرجاء المحاولة مرة اخرى.'));
     }
   }
 
@@ -96,20 +100,20 @@ class AuthRepoImpl extends AuthRepo {
     try {
       final userCredential = await firebaseAuthService.signInWithGoogle();
       user = userCredential.user;
-      var userentity = UserModel.fromfirebaseUser(user!);
+      UserEntity userentity = UserModel.fromfirebaseUser(user!);
+
       var isuserexist = await databaseservice.checkIfDataExists(
         documentId: user.uid,
         path: BackendPoints.isUserexist,
       );
+
       if (isuserexist) {
-        await getUserData(Uid: user.uid);
+        userentity = await getUserData(uid: user.uid);
+        await saveUserData(user: userentity);
       } else {
         await addUserData(user: userentity, useSet: true, email: user.email!);
+        await saveUserData(user: userentity);
       }
-
-      // if (user == null) {
-      //   return Left(ServerFaliur(' .فشل تسجيل الدخول بحساب Google.'));
-      // }
 
       return Right(userentity);
     } on CustomException catch (e) {
@@ -131,8 +135,9 @@ class AuthRepoImpl extends AuthRepo {
     try {
       final userCredential = await firebaseAuthService.signInWithFacebook();
       user = userCredential.user;
-      var userentity = UserModel.fromfirebaseUser(user!);
+      UserEntity userentity = UserModel.fromfirebaseUser(user!);
       await addUserData(user: userentity, email: user.email!);
+      await saveUserData(user: userentity);
 
       // if (userentity == null) {
       //   return Left(ServerFaliur('Failed to sign in with Facebook'));
@@ -160,22 +165,22 @@ class AuthRepoImpl extends AuthRepo {
       await databaseservice.setData(
         path: BackendPoints.addUserData,
         id: user.uId,
-        data: user.toMap(),
+        data: UserModel.fromEntity(user).toMap(),
       );
     } else {
       await databaseservice.addData(
         path: BackendPoints.addUserData,
-        data: user.toMap(),
+        data: UserModel.fromEntity(user).toMap(),
         documentId: user.uId,
       );
     }
   }
 
   @override
-  Future<UserEntity> getUserData({required String Uid}) async {
+  Future<UserEntity> getUserData({required String uid}) async {
     var userData = await databaseservice.getData(
       path: BackendPoints.getUserData,
-      DcumentId: Uid,
+      documentId: uid,
     );
     return UserModel.fromJson(userData);
   }
@@ -207,4 +212,10 @@ class AuthRepoImpl extends AuthRepo {
   // User? getCurrentUser() {
   //   return FirebaseAuth.instance.currentUser;
   // }
+
+  @override
+  Future saveUserData({required UserEntity user}) async {
+    var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
+    await Prefs.setString(kUserData, jsonData);
+  }
 }

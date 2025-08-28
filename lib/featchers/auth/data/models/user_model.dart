@@ -34,4 +34,25 @@ class UserModel extends UserEntity {
       // password: map['password'] ?? '',
     );
   }
+
+  /// من Entity لـ Model
+  factory UserModel.fromEntity(UserEntity entity) {
+    return UserModel(
+      uId: entity.uId,
+      email: entity.email,
+      name: entity.name,
+      role: entity.role,
+    );
+  }
+
+  toMap() {
+    return {
+      'email': email,
+      'name': name,
+      'uId': uId,
+      'role': role,
+
+      // 'cardImageUrl': cardImageUrl,
+    };
+  }
 }

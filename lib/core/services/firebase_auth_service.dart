@@ -13,7 +13,7 @@ class FirebaseAuthService {
   String? _verificationId;
 
   Future<void> deleteUser() async {
-    await _firebaseAuth.currentUser?.delete();
+    await _firebaseAuth.currentUser!.delete();
   }
 
   Future<User> creatuserWithEmailAndPassword({
@@ -57,8 +57,8 @@ class FirebaseAuthService {
   }
 
   Future<void> sendemailverificationlink() async {
-    final user = _firebaseAuth.currentUser;
-    if (user != null && !user.emailVerified) {
+    final user = _firebaseAuth.currentUser!;
+    if (!user.emailVerified) {
       await user.sendEmailVerification();
       developer.log("Verification email sent to ${user.email}");
     } else {

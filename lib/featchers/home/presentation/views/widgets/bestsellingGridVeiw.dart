@@ -2,12 +2,17 @@ import 'package:e_commerce/core/widgets/fruit_item.dart';
 import 'package:flutter/material.dart';
 
 class Bestsellinggridveiw extends StatelessWidget {
-  const Bestsellinggridveiw({super.key});
+  final int itemcount;
+  const Bestsellinggridveiw({super.key, required this.itemcount});
 
   @override
   Widget build(BuildContext context) {
-    return SliverGrid.builder(
-      itemCount: 4, // Adjust the number of items as needed
+    return GridView.builder(
+      padding: const EdgeInsets.all(16),
+      shrinkWrap: true, // مهم عشان يشتغل جوه ScrollView
+      physics:
+          const NeverScrollableScrollPhysics(), // عشان مايتعارضش مع ScrollView الأب
+      itemCount: itemcount,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 16,

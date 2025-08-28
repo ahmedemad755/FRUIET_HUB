@@ -17,13 +17,13 @@ void setupGetit() {
   // 2. تسجيل FireStoreService مره واحده و تربطه كمان بـ Databaseservice
   final fireStoreService = FireStoreService();
   getIt.registerSingleton<FireStoreService>(fireStoreService);
-  getIt.registerSingleton<Databaseservice>(fireStoreService);
+  getIt.registerSingleton<DatabaseService>(fireStoreService);
 
   // 3. تسجيل AuthRepo
   getIt.registerSingleton<AuthRepo>(
     AuthRepoImpl(
       firebaseAuthService: getIt<FirebaseAuthService>(),
-      databaseservice: getIt<Databaseservice>(),
+      databaseservice: getIt<DatabaseService>(),
       fireStoreService: getIt<FireStoreService>(),
     ),
   );

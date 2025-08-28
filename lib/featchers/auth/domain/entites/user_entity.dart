@@ -16,15 +16,4 @@ class UserEntity {
 
     // required this.cardImageUrl,
   });
-
-  toMap() {
-    return {
-      'email': email,
-      'name': name,
-      'uId': uId,
-      'role': role,
-
-      // 'cardImageUrl': cardImageUrl,
-    };
-  }
 }
