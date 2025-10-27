@@ -3,6 +3,8 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce/core/functions_helper/build_error_bar.dart';
+import 'package:e_commerce/core/functions_helper/routs.dart';
+import 'package:e_commerce/core/utils/app_colors.dart';
 import 'package:e_commerce/core/widgets/custom_button.dart';
 import 'package:e_commerce/featchers/AUTH/presentation/cubits/signup/sugnup_cubit.dart';
 import 'package:e_commerce/featchers/AUTH/widgets/build_app_bar.dart';
@@ -10,11 +12,9 @@ import 'package:e_commerce/featchers/AUTH/widgets/cusstom_textfield.dart';
 import 'package:e_commerce/featchers/AUTH/widgets/password_field.dart';
 import 'package:e_commerce/featchers/AUTH/widgets/showtermsandcondetions.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:e_commerce/core/functions_helper/routs.dart';
-import 'package:e_commerce/core/utils/app_colors.dart';
-import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class Signup extends StatefulWidget {
@@ -41,7 +41,7 @@ class _SignupState extends State<Signup> {
         const Duration(seconds: 1),
         () => setState(() => _shouldShake = false),
       );
-      buildErroreBer(context, 'يجب الموافقة على الشروط والأحكام أولاً');
+      showErrorBar(context, 'يجب الموافقة على الشروط والأحكام أولاً');
       return;
     }
 
@@ -51,7 +51,7 @@ class _SignupState extends State<Signup> {
       print("🔍 [Signup] email=$email, password=$password");
 
       if (email.trim().isEmpty || password.trim().isEmpty) {
-        buildErroreBer(context, 'الرجاء ملء الحقول بشكل صحيح');
+        showErrorBar(context, 'الرجاء ملء الحقول بشكل صحيح');
         return;
       }
 
@@ -63,7 +63,7 @@ class _SignupState extends State<Signup> {
             .get();
 
         if (querySnapshot.docs.isNotEmpty) {
-          buildErroreBer(context, 'البريد الإلكتروني مستخدم بالفعل');
+          showErrorBar(context, 'البريد الإلكتروني مستخدم بالفعل');
           return;
         }
 
@@ -74,7 +74,7 @@ class _SignupState extends State<Signup> {
           role: role,
         );
       } catch (e) {
-        buildErroreBer(context, "حدث خطأ أثناء الاتصال بالخادم: $e");
+        showErrorBar(context, "حدث خطأ أثناء الاتصال بالخادم: $e");
         print("=================Error during signup: $e");
       }
     } else {
@@ -171,7 +171,7 @@ class _SignupState extends State<Signup> {
               () => Navigator.of(context).pushReplacementNamed(AppRoutes.login),
             );
           } else if (state is SugnupFailure) {
-            buildErroreBer(context, state.message);
+            showErrorBar(context, state.message);
           }
         },
         builder: (context, state) {
@@ -231,7 +231,7 @@ class _SignupState extends State<Signup> {
                         const SizedBox(height: 8),
                         _buildTermsCheckbox(),
                         const SizedBox(height: 24),
-                        CustomButton(
+                        CustomButtn(
                           text: ' إنشاء حساب جديد',
                           onPressed: _submitForm,
                         ),

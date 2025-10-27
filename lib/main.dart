@@ -14,9 +14,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Initialize dependency injection
-
   Bloc.observer = CustomBlocObserver();
-
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await Prefs.init();
   setupGetit();
@@ -31,7 +29,7 @@ void main() async {
   } else if (isLoggedIn) {
     initialRoute = AppRoutes.home;
   } else {
-    initialRoute = AppRoutes.login;
+    initialRoute = AppRoutes.splash;
   }
   runApp(FuitHub(initialRoute: initialRoute));
 }

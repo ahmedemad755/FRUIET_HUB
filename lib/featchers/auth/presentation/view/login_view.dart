@@ -1,7 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 // Hide conflicting Column from drift
 import 'package:e_commerce/core/functions_helper/build_error_bar.dart';
-import 'package:e_commerce/core/widgets/custom_button.dart';
+import 'package:e_commerce/core/functions_helper/routs.dart';
+import 'package:e_commerce/core/utils/app_colors.dart';
+import 'package:e_commerce/core/utils/app_imags.dart';
 import 'package:e_commerce/featchers/AUTH/presentation/cubits/login/login_cubit.dart';
 import 'package:e_commerce/featchers/AUTH/presentation/cubits/login/login_state.dart';
 import 'package:e_commerce/featchers/AUTH/widgets/build_app_bar.dart';
@@ -9,13 +11,11 @@ import 'package:e_commerce/featchers/AUTH/widgets/cusstom_textfield.dart';
 import 'package:e_commerce/featchers/AUTH/widgets/customProgressLoading.dart';
 import 'package:e_commerce/featchers/AUTH/widgets/password_field.dart';
 import 'package:e_commerce/featchers/AUTH/widgets/socialbutton.dart';
+import 'package:e_commerce/featchers/auth/widgets/custombotton.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart'; // Single import for Flutter
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:e_commerce/core/functions_helper/routs.dart';
-import 'package:e_commerce/core/utils/app_colors.dart';
-import 'package:e_commerce/core/utils/app_imags.dart';
-import 'package:flutter/material.dart'; // Single import for Flutter
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -39,7 +39,7 @@ class _LoginViewState extends State<LoginView> {
             Navigator.of(context).pushReplacementNamed(AppRoutes.home);
           }
           if (state is LoginFailure) {
-            buildErroreBer(context, state.message);
+            showErrorBar(context, state.message);
           }
         },
         builder: (context, state) {

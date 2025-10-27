@@ -1,9 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_commerce/constants.dart';
-
 import 'package:e_commerce/core/functions_helper/routs.dart';
 import 'package:e_commerce/core/services/shared_prefs_singelton.dart';
-
 import 'package:e_commerce/core/utils/app_colors.dart';
 import 'package:e_commerce/core/widgets/custom_button.dart';
 import 'package:e_commerce/featchers/onboarding/widgets/onboarding_pageView.dart';
@@ -20,6 +18,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
   late PageController pageController;
   int currentPage = 0;
 
+  @override
   void initState() {
     super.initState();
     pageController = PageController();
@@ -65,7 +64,7 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
             maintainSize: true,
             maintainState: true,
             // Show button only on the first page
-            child: CustomButton(
+            child: CustomButtn(
               onPressed: () async {
                 await Prefs.setBool(kIsOnBoardingViewSeen, true);
                 Navigator.of(context).pushReplacementNamed(AppRoutes.login);

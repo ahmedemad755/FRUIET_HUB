@@ -1,10 +1,9 @@
 import 'package:e_commerce/core/utils/app_colors.dart';
 import 'package:e_commerce/core/utils/app_text_styles.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.onPressed, required this.text});
+class CustomButtn extends StatelessWidget {
+  const CustomButtn({super.key, required this.onPressed, required this.text});
   final VoidCallback onPressed;
   final String text;
   @override

@@ -114,10 +114,15 @@ class Assets {
 
   /// Assets for inActive
   /// assets/inActive/
-  static const String inActiveElements = "assets/inActive/element-3.svg";
+  static const String inActiveElements = "assets/inactive_product.svg ";
   static const String inActiveHome = "assets/inActive/home.svg";
-  static const String inActiveProduct = "assets/inActive/product.svg";
+  static const String inActiveProduct = "assets/inactive_product.svg";
   static const String inActiveShoppingCart =
       "assets/inActive/shopping-cart.svg";
   static const String inActiveUser = "assets/inActive/user.svg";
+
+  static const String trash = "assets/trash.svg";
+  static const String cartItem = "assets/cart-item.png";
+  static const String imagesEdit = "assets/edit.svg";
+  static const String imagesLocation = "assets/location.svg";
 }

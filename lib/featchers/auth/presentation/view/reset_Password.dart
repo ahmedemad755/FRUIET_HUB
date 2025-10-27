@@ -59,7 +59,7 @@ class _SendResetPasswordState extends State<SendResetPassword> {
               const SizedBox(height: 24),
               _isLoading
                   ? const CircularProgressIndicator()
-                  : CustomButton(
+                  : CustomButtn(
                       text: 'إرسال رابط إعادة التعيين',
                       onPressed: _submit,
                     ),

@@ -1,3 +1,5 @@
+import 'dart:core';
+
 abstract class DatabaseService {
   Future<void> addData({
     required String path,
@@ -5,9 +7,10 @@ abstract class DatabaseService {
     required String documentId,
   });
 
-  Future<Map<String, dynamic>> getData({
+  Future<dynamic> getData({
     required String path,
-    required String documentId,
+    String? docuementId,
+    Map<String, dynamic>? query,
   });
 
   Future<void> setData({

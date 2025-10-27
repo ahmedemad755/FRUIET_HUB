@@ -10,7 +10,9 @@ import 'package:e_commerce/featchers/AUTH/presentation/view/oTPVerificationScree
 import 'package:e_commerce/featchers/AUTH/presentation/view/reset_Password.dart';
 import 'package:e_commerce/featchers/AUTH/presentation/view/signup.view.dart';
 import 'package:e_commerce/featchers/best_selling_fruites/presentations/views/best_seliling_fruites_view.dart';
-import 'package:e_commerce/featchers/home/presentation/views/home_veiw.dart';
+import 'package:e_commerce/featchers/checkout/presentation/views/check_out_view.dart';
+import 'package:e_commerce/featchers/home/domain/enteties/cart_entety.dart';
+import 'package:e_commerce/featchers/home/presentation/views/main_veiw.dart';
 import 'package:e_commerce/featchers/onboarding/views/onboarding_view.dart';
 import 'package:e_commerce/featchers/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +28,7 @@ class AppRoutes {
   static const String otp = 'otp';
   static const String sendResetPassword = 'sendResetPassword';
   static const String bestFruites = 'bestFruites';
+  static const String checkout = 'checkout';
 }
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -47,7 +50,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case AppRoutes.home:
       return MaterialPageRoute(
-        builder: (_) => HomePage(authRepoImpl: getIt<AuthRepoImpl>()),
+        builder: (_) => MainVeiw(authRepoImpl: getIt<AuthRepoImpl>()),
+      );
+    case AppRoutes.checkout:
+      return MaterialPageRoute(
+        builder: (_) =>
+            CheckOutView(cartEntity: settings.arguments as CartEntity),
       );
     case AppRoutes.forgotPassword:
       return MaterialPageRoute(
